@@ -334,7 +334,12 @@ class EfsSettingsSchema(BaseSchema):
         messages = []
         if data.get("file_system_id") is not None:
             for key in data:
-                if key is not None and key not in ["encryption_in_transit", "iam_authorization", "file_system_id", "accesspoint_id"]:
+                if key is not None and key not in [
+                    "encryption_in_transit",
+                    "iam_authorization",
+                    "file_system_id",
+                    "access_point_id",
+                ]:
                     messages.append(EFS_MESSAGES["errors"]["ignored_param_with_efs_fs_id"].format(efs_param=key))
             if messages:
                 raise ValidationError(message=messages)
